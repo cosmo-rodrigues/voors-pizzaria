@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
-import './globals.css';
+import '../globals.css';
 
 const roboto = Roboto({
   style: 'normal',
@@ -16,8 +16,24 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  params: {
+    locale: string;
+  };
 }
 
-export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
-  return children;
+export default function RootLayout({
+  children,
+  params: { locale },
+}: Readonly<RootLayoutProps>) {
+  const messages = useMessages();
+
+  return (
+    <html lang={locale}>
+      <body className={roboto.className}>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
 }
