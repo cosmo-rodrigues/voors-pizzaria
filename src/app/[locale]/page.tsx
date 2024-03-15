@@ -1,11 +1,8 @@
-import { useTranslations } from 'next-intl';
-
-export default function Home() {
-  const t = useTranslations('Index');
-
+export default async function Home() {
+  
   return (
-    <main className='flex h-screen w-screen items-center justify-center'>
-      <h1>{t('title')}</h1>
-    </main>
+    <div>
+      <h1>Início de tudo</h1>
+    </div>
   );
 }

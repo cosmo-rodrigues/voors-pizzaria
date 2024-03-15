@@ -4,5 +4,16 @@
   },
   "NotFound": {
     "title": "Page not found!"
+  },
+  "Routes": {
+    "home": {
+      "label": "Home"
+    },
+    "menu": {
+      "label": "Menu"
+    },
+    "ordering": {
+      "label": "Your Way"
+    }
   }
 }
