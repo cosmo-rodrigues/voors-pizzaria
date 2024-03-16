@@ -19,5 +19,18 @@
         "label": "Your Way"
       }
     }
+  },
+  "Hero": {
+    "orderButton": "order now",
+    "learnButton": "learn more",
+    "subtitle": {
+      "text_01": "Pizza is the missing piece that makes every day complete.",
+      "text_02": "A simple yet delicious joy in life"
+    },
+    "title": {
+      "text_01": "Everything",
+      "text_02": "is better",
+      "text_03": "ith a"
+    }
   }
 }

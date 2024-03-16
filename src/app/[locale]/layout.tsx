@@ -2,8 +2,7 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Roboto } from 'next/font/google';
 import type { Metadata } from 'next';
 import '../globals.css';
-import { Header, ThemeProvider } from '@/components/MyComponents';
-import { getLocale } from 'next-intl/server';
+import { Header, ThemeProvider } from '@/components/layout';
 
 const roboto = Roboto({
   style: 'normal',
@@ -28,19 +27,13 @@ export default function RootLayout({
   params: { locale },
 }: Readonly<RootLayoutProps>) {
   const messages = useMessages();
-  // let locale = ''
-  // (async() => {
-  //   locale = await getLocale();
-
-  // })
-
 
   return (
     <html lang={locale}>
       <body className={roboto.className}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-      <Header locale={locale} />
+            <Header locale={locale} />
 
             {children}
           </ThemeProvider>

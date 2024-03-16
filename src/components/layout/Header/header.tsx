@@ -60,7 +60,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
                 </nav>
               </Shad.SheetContent>
             </Shad.Sheet>
-            <Link href='/pt' className='flex ml-4 lg:ml-0'>
+            <Link href='/pt' className='flex ml-4 lg:ml-0 hidden sm:flex'>
               <Image
                 src='/logo_left.svg'
                 height={30}
@@ -83,7 +83,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
             {routes.map((route, i) => (
               <Shad.Button asChild key={i} variant='ghost'>
                 <Link
-                  className='text-sm font-medium transition-colors'
+                  className='text-sm font-semibold text-slate-500 transition-colors'
                   href={route.href}
                 >
                   {route.label}

@@ -19,5 +19,18 @@
         "label": "Monte Sua Pizza"
       }
     }
+  },
+  "Hero": {
+    "orderButton": "peça agora",
+    "learnButton": "leia sobre",
+    "subtitle": {
+      "text_01": "Pizza é a peça que faltava para completar seu dia, uma alegria na vida.",
+      "text_02": "Simples mas deliciosa"
+    },
+    "title": {
+      "text_01": "Tudo",
+      "text_02": "fica melhor",
+      "text_03": "com uma"
+    }
   }
 }
