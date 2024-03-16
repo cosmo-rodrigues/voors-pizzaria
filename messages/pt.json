@@ -7,18 +7,7 @@
   },
   "Header": {
     "shoppingCart": "Carrinho de compras",
-    "toggleTheme": "Mudar tema",
-    "routes": {
-      "home": {
-        "label": "Início"
-      },
-      "menu": {
-        "label": "Cardápio"
-      },
-      "ordering": {
-        "label": "Monte Sua Pizza"
-      }
-    }
+    "toggleTheme": "Mudar tema"
   },
   "Hero": {
     "orderButton": "peça agora",
@@ -31,6 +20,19 @@
       "text_01": "Tudo",
       "text_02": "fica melhor",
       "text_03": "com uma"
+    }
+  },
+  "Nav": {
+    "routes": {
+      "home": {
+        "label": "Início"
+      },
+      "menu": {
+        "label": "Cardápio"
+      },
+      "ordering": {
+        "label": "Monte Sua Pizza"
+      }
     }
   }
 }

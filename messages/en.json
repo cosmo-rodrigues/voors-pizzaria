@@ -7,18 +7,7 @@
   },
   "Header": {
     "shoppingCart": "Shopping Cart",
-    "toggleTheme": "Toggle Theme",
-    "routes": {
-      "home": {
-        "label": "Home"
-      },
-      "menu": {
-        "label": "Menu"
-      },
-      "ordering": {
-        "label": "Your Way"
-      }
-    }
+    "toggleTheme": "Toggle Theme"
   },
   "Hero": {
     "orderButton": "order now",
@@ -30,7 +19,20 @@
     "title": {
       "text_01": "Everything",
       "text_02": "is better",
-      "text_03": "ith a"
+      "text_03": "with a"
+    }
+  },
+  "Nav": {
+    "routes": {
+      "home": {
+        "label": "Home"
+      },
+      "menu": {
+        "label": "Menu"
+      },
+      "ordering": {
+        "label": "Your Way"
+      }
     }
   }
 }

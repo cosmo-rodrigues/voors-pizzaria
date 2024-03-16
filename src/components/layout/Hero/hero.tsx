@@ -1,15 +1,19 @@
 import Right from '@/components/icons/Right';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { ArticlePTBR } from '../../../mock/Article/article_pt';
+import { ArticleENUS } from '../../../mock/Article/article_en';
+import { Button } from '@/components/ui';
 
 export default function Hero() {
   const t = useTranslations('Hero');
+  const localActive = useLocale();
 
   return (
     <section className='hero md:mt-4'>
       <div className='container relative'>
-        <div className='flex justify-center'>
+        <div className='flex justify-center lg:justify-between'>
           <div className='py-8 md:py-12'>
             <h1 className='text-4xl font-semibold'>
               {t('title.text_01')}
@@ -26,17 +30,17 @@ export default function Hero() {
               {t('subtitle.text_02')}
             </p>
             <div className='flex gap-4 text-sm'>
-              <button className='flex justify-center bg-primary uppercase items-center gap-2 text-white px-4 py-2 rounded-full'>
-                {t('orderButton')}
-                <Right />
-              </button>
-              <button className='flex items-center border-0 gap-2 py-2 text-gray-600 font-semibold'>
-                {t('learnButton')}
-                <Right />
-              </button>
+              <Link href={`/${localActive}/cardapio`}>
+                <Button className='flex justify-center bg-primary uppercase items-center gap-2 text-slate-50 px-4 py-2 rounded-full font-semibold'>
+                  {t('orderButton')}
+                  <Right />
+                </Button>
+              </Link>
+
+              {localActive === 'pt' ? <ArticlePTBR /> : <ArticleENUS />}
             </div>
           </div>
-          <div className='hidden lg:flex max-w-[500px] lg:-mt-14'>
+          <div className='hidden lg:flex max-w-[500px] lg:-mt-14 mx-auto'>
             <Image src='/pizza.png' width={700} height={700} alt='pizza' />
           </div>
         </div>

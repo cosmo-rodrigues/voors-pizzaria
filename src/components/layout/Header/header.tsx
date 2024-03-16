@@ -13,6 +13,7 @@ import { Container } from '..';
 import * as Shad from '@/components/ui';
 import LocalSwitcher from '../LocalSwitcher/local-switcher';
 import Image from 'next/image';
+import { Nav } from '../Navbar/navbar';
 
 interface HeaderProps extends ComponentProps {
   locale: string;
@@ -52,7 +53,10 @@ export const Header = ({ className, locale }: HeaderProps) => {
                 <nav className='flex flex-col gap-4'>
                   {routes.map((route, i) => (
                     <Shad.Button asChild key={i} variant='ghost'>
-                      <Link className='block px-2 py-1' href={route.href}>
+                      <Link
+                        className='block px-2 py-1 uppercase'
+                        href={route.href}
+                      >
                         {route.label}
                       </Link>
                     </Shad.Button>
@@ -60,7 +64,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
                 </nav>
               </Shad.SheetContent>
             </Shad.Sheet>
-            <Link href='/pt' className='flex ml-4 lg:ml-0 hidden sm:flex'>
+            <Link href='/pt' className='ml-4 lg:ml-0 hidden sm:flex'>
               <Image
                 src='/logo_left.svg'
                 height={30}
@@ -79,20 +83,13 @@ export const Header = ({ className, locale }: HeaderProps) => {
             </Link>
           </div>
 
-          <nav className='mx-6 flex items-center space-x-4 lg:space-x-6 hidden lg:block'>
-            {routes.map((route, i) => (
-              <Shad.Button asChild key={i} variant='ghost'>
-                <Link
-                  className='text-sm font-semibold text-slate-500 transition-colors'
-                  href={route.href}
-                >
-                  {route.label}
-                </Link>
-              </Shad.Button>
-            ))}
-          </nav>
+          <Nav
+            containerStyles='hidden lg:flex gap-x-8 items-center'
+            linkStyles='relative hover:text-primary transition-all'
+            underlineStyles='absolute left-0 top-full h-[2px] bg-primary w-full'
+          />
 
-          <div className='flex items-center'>
+          <div className='flex items-center text-slate-500'>
             <Shad.Button
               aria-label='Shopping Cart'
               className='mr-2'
