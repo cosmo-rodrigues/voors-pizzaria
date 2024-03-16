@@ -31,13 +31,15 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={roboto.className}>
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-            <Header locale={locale} />
+        <main className='max-w-4xl mx-auto p-4'>
+          <NextIntlClientProvider messages={messages}>
+            <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+              <Header locale={locale} />
 
-            {children}
-          </ThemeProvider>
-        </NextIntlClientProvider>
+              {children}
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </main>
       </body>
     </html>
   );

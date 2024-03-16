@@ -57,3 +57,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+section.hero{
+  @apply block md:grid;
+  grid-template-columns: .4fr .6fr;
+}

@@ -21,29 +21,30 @@ interface HeaderProps extends ComponentProps {
 
 export const Header = ({ className, locale }: HeaderProps) => {
   const { theme, setTheme } = useTheme();
-  const t = useTranslations('Header');
+  const tHeader = useTranslations('Header');
+  const tNav = useTranslations('Nav');
 
   const routes = [
     {
       href: `/${locale}`,
-      label: t('routes.home.label'),
+      label: tNav('routes.home.label'),
     },
     {
       href: `/${locale}/cardapio`,
-      label: t('routes.menu.label'),
+      label: tNav('routes.menu.label'),
     },
     {
       href: `/${locale}/monte-sua-pizza`,
-      label: t('routes.ordering.label'),
+      label: tNav('routes.ordering.label'),
     },
   ];
 
   return (
     <header
-      className={cn('sm:flex sm:justify-between py-3 px-4 border-b', className)}
+      className={cn('sm:flex sm:justify-between py-3 px-0 border-b', className)}
     >
       <Container>
-        <div className='relative px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between w-full'>
+        <div className='relative flex h-16 items-center justify-between w-full'>
           <div className='flex items-center'>
             <Shad.Sheet>
               <Shad.SheetTrigger>
@@ -97,7 +98,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
               variant='ghost'
             >
               <ShoppingCart />
-              <span className='sr-only'>{t('shoppingCart')}</span>
+              <span className='sr-only'>{tHeader('shoppingCart')}</span>
             </Shad.Button>
 
             <Shad.Button
@@ -109,7 +110,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
             >
               <Sun className='h-6 w-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
               <Moon className='absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-              <span className='sr-only'>{t('toggleTheme')}</span>
+              <span className='sr-only'>{tHeader('toggleTheme')}</span>
             </Shad.Button>
 
             <LocalSwitcher />
