@@ -1,15 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { ComponentProps } from '@/types /component-props';
+import { useTheme } from 'next-themes';
+import { useTranslations } from 'next-intl';
 
 import { Menu, Moon, ShoppingCart, Sun } from 'lucide-react';
 
+import { ComponentProps } from '@/types/component-props';
 import { cn } from '@/lib/utils';
+
 import { Container } from '..';
 import * as Shad from '@/components/ui';
-import { useTranslations } from 'next-intl';
-import { useTheme } from 'next-themes';
+import LocalSwitcher from '../LocalSwitcher/local-switcher';
 
 interface HeaderProps extends ComponentProps {
   locale: string;
@@ -49,10 +51,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
                 <nav className='flex flex-col gap-4'>
                   {routes.map((route, i) => (
                     <Shad.Button asChild key={i} variant='ghost'>
-                      <Link
-                        className='block px-2 py-1'
-                        href={route.href}
-                      >
+                      <Link className='block px-2 py-1' href={route.href}>
                         {route.label}
                       </Link>
                     </Shad.Button>
@@ -100,6 +99,8 @@ export const Header = ({ className, locale }: HeaderProps) => {
               <Moon className='absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
               <span className='sr-only'>Toggle Theme</span>
             </Shad.Button>
+
+            <LocalSwitcher />
           </div>
         </div>
       </Container>
