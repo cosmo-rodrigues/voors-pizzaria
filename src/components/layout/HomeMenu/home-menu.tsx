@@ -1,6 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 
-export default function HomeImages() {
+export default function HomeMenu() {
   return (
     <div className='left-0 right-0 w-full justify-start hidden md:flex'>
       <div className='absolute left-0 top-[75vh] lg:top-[50vh] text-left -z-10'>

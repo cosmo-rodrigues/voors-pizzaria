@@ -1,11 +1,15 @@
 import Hero from '@/components/layout/Hero/hero';
-import HomeImages from '@/components/layout/HomeImages/HomeImages/home-images';
+import { Suspense, lazy } from 'react';
+// import HomeMenu from '@/components/layout/HomeMenu/home-menu';
+const HomeMenu = lazy(() => import('@/components/layout/HomeMenu/home-menu'));
 
 export default async function Home() {
   return (
     <>
       <Hero />
-      <HomeImages /> 
+      <Suspense fallback={<div>Loading...</div>}>
+        <HomeMenu />
+      </Suspense>
     </>
   );
 }

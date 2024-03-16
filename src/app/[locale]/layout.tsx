@@ -2,7 +2,9 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Roboto } from 'next/font/google';
 import type { Metadata } from 'next';
 import '../globals.css';
-import { Header, ThemeProvider } from '@/components/layout';
+import { Header } from '@/components/layout';
+import { ThemeProvider } from '@/components/Provider/Theme/theme-provider';
+import { ReactQueryClientProvider } from '@/components/Provider/ReactQuery/react-query-provider';
 
 const roboto = Roboto({
   style: 'normal',
@@ -31,15 +33,17 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={roboto.className}>
-        <main className='max-w-4xl mx-auto p-4'>
+        <ReactQueryClientProvider>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-              <Header locale={locale} />
+              <main className='max-w-4xl mx-auto p-4'>
+                <Header locale={locale} />
 
-              {children}
+                {children}
+              </main>
             </ThemeProvider>
           </NextIntlClientProvider>
-        </main>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );
