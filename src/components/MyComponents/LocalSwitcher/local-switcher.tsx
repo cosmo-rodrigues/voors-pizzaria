@@ -31,7 +31,7 @@ export default function LocalSwitcher() {
       <p className='sr-only'>change language</p>
       <select
         defaultValue={localActive}
-        className='appearance-none row-start-1 col-start-1 bg-slate-50 dark:bg-slate-800   text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white'
+        className='appearance-none row-start-1 col-start-1 bg-slate-50 dark:bg-slate-800 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white'
         onChange={onSelectChange}
         disabled={isPending}
       >

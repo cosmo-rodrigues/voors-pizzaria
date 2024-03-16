@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { Container } from '..';
 import * as Shad from '@/components/ui';
 import LocalSwitcher from '../LocalSwitcher/local-switcher';
+import Image from 'next/image';
 
 interface HeaderProps extends ComponentProps {
   locale: string;
@@ -19,20 +20,20 @@ interface HeaderProps extends ComponentProps {
 
 export const Header = ({ className, locale }: HeaderProps) => {
   const { theme, setTheme } = useTheme();
-  const t = useTranslations('Routes');
+  const t = useTranslations('Header');
 
   const routes = [
     {
       href: `/${locale}`,
-      label: t('home.label'),
+      label: t('routes.home.label'),
     },
     {
       href: `/${locale}/cardapio`,
-      label: t('menu.label'),
+      label: t('routes.menu.label'),
     },
     {
       href: `/${locale}/monte-sua-pizza`,
-      label: t('ordering.label'),
+      label: t('routes.ordering.label'),
     },
   ];
 
@@ -59,8 +60,22 @@ export const Header = ({ className, locale }: HeaderProps) => {
                 </nav>
               </Shad.SheetContent>
             </Shad.Sheet>
-            <Link href='/pt' className='ml-4 lg:ml-0'>
-              <h1 className='text-xl font-bold'>VOORS</h1>
+            <Link href='/pt' className='flex ml-4 lg:ml-0'>
+              <Image
+                src='/logo_left.svg'
+                height={30}
+                width={30}
+                alt='Pizza'
+                className='rounded-full -mr-[8px]'
+              />
+              <h1 className='text-primary text-3xl font-black'>VOORS</h1>
+              <Image
+                src='/logo_right.svg'
+                height={30}
+                width={30}
+                alt='Pizza'
+                className='rounded-full -ml-[3px]'
+              />
             </Link>
           </div>
 
@@ -85,7 +100,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
               variant='ghost'
             >
               <ShoppingCart />
-              <span className='sr-only'>Shopping Cart</span>
+              <span className='sr-only'>{t('shoppingCart')}</span>
             </Shad.Button>
 
             <Shad.Button
@@ -97,7 +112,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
             >
               <Sun className='h-6 w-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
               <Moon className='absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-              <span className='sr-only'>Toggle Theme</span>
+              <span className='sr-only'>{t('toggleTheme')}</span>
             </Shad.Button>
 
             <LocalSwitcher />

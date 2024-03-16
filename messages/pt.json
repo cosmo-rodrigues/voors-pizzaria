@@ -5,15 +5,19 @@
   "NotFound": {
     "title": "Página não encontrada!"
   },
-  "Routes": {
-    "home": {
-      "label": "Início"
-    },
-    "menu": {
-      "label": "Cardápio"
-    },
-    "ordering": {
-      "label": "Monte Sua Pizza"
+  "Header": {
+    "shoppingCart": "Carrinho de compras",
+    "toggleTheme": "Mudar tema",
+    "routes": {
+      "home": {
+        "label": "Início"
+      },
+      "menu": {
+        "label": "Cardápio"
+      },
+      "ordering": {
+        "label": "Monte Sua Pizza"
+      }
     }
   }
 }
