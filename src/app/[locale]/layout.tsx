@@ -1,6 +1,8 @@
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Roboto } from 'next/font/google';
 import type { Metadata } from 'next';
+import { Toaster } from 'react-hot-toast';
+
 import '../globals.css';
 import { Header } from '@/components/layout';
 import { ThemeProvider } from '@/components/Provider/Theme/theme-provider';
@@ -36,9 +38,9 @@ export default function RootLayout({
         <ReactQueryClientProvider>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+              <Toaster />
               <main className='max-w-4xl mx-auto p-4'>
                 <Header locale={locale} />
-
                 {children}
               </main>
             </ThemeProvider>
