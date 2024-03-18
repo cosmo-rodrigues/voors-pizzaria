@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function HomeMenu() {
   return (
-    <div className='left-0 right-0 w-full justify-start hidden md:flex w-full h-full'>
+    <div className='left-0 right-0 w-full justify-start hidden md:flex h-full'>
       <div className='absolute left-0 top-[75vh] lg:top-[50vh] text-left -z-10'>
         <Image src='/salad_right.png' width={109} height={189} alt='Salad' />
       </div>

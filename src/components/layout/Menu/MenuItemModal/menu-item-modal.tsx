@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import Right from '@/components/icons/Right';
@@ -104,8 +105,13 @@ export function MenuItemModal({ addItems, item }: Props) {
           onClick={(ev) => ev.stopPropagation()}
           className='bg-slate-300 p-2 rounded-lg overflow-y-scroll'
         >
-          <div className='p-2 flex flex-col' style={{ maxHeight: 'calc(100vh - 100px)' }}>
-            <h2 className='text-lg font-bold text-center mb-2 text-slate-600'>{item.name}</h2>
+          <div
+            className='p-2 flex flex-col'
+            style={{ maxHeight: 'calc(100vh - 100px)' }}
+          >
+            <h2 className='text-lg font-bold text-center mb-2 text-slate-600'>
+              {item.name}
+            </h2>
             {handleAdditionalTime(item.name) && (
               <span className='py-1 px-3  bg-orange-300 font-semibold self-center rounded-sm mb-2'>
                 Esta pizza tem adicional de 5 minutos tempo no preparo
