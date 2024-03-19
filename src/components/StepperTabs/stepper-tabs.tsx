@@ -2,14 +2,19 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import * as Shad from '@/components/ui';
 import { SIZES } from '@/mock/data/sizes';
 import { ADDITIONAL } from '@/mock/data/additional';
 import { PIZZAS } from '@/mock/data/pizzas';
+import { CartContext } from '../Provider/ContextApi/constext-provider';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 export function StepperTabs() {
+  const router = useRouter();
+  const { addToCart } = useContext(CartContext);
   const [selectedSize, setSelectedSize] = useState(SIZES[2]);
   const [selectedAdditional, setSelectedAdditional] = useState([]);
   const [selectedType, setSelectedType] = useState([]);
@@ -33,6 +38,46 @@ export function StepperTabs() {
 
   const handleType = (pizza: typeof PIZZAS) => {
     setSelectedType((prev) => [...prev, pizza]);
+  };
+
+  const handleFinalPrice = () => {
+    const sizePrice = selectedSize.price;
+    const additionalAmount = selectedAdditional.reduce(
+      (acc, crr) => acc + crr.price,
+      0
+    );
+    const typeAmount = selectedType.reduce((acc, crr) => acc + crr.price, 0);
+
+    return sizePrice + additionalAmount + typeAmount;
+  };
+
+  const fakeCalling = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  };
+
+  const handleOrder = () => {
+    if (!selectedSize.item) {
+      return toast.error('Selecione um tamanho');
+    }
+
+    if (!selectedType[0]?.name) {
+      return toast.error('Selecione pelo meno um sabor');
+    }
+    const order = {
+      image: selectedType[0]?.image || '/pizza_portuguesa.png',
+      name: selectedType[0]?.name || '',
+      price: handleFinalPrice(),
+    };
+    addToCart(order);
+
+    toast
+      .promise(fakeCalling(), {
+        loading: 'Adicionando...',
+        success: <b>Piza adicionada com sucesso!</b>,
+      })
+      .finally(() => {
+        router.push(`/pt/cart`);
+      });
   };
 
   return (
@@ -155,7 +200,7 @@ export function StepperTabs() {
             >
               Voltar
             </Shad.Button>
-            <Shad.Button>Adicionar</Shad.Button>
+            <Shad.Button onClick={() => handleOrder()}>Adicionar</Shad.Button>
           </Shad.CardFooter>
         </Shad.Card>
       </Shad.TabsContent>

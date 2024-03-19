@@ -45,7 +45,10 @@ export function MenuItemModal({ item, open, handleOpen }: Props) {
   return (
     <Dialog open={open}>
       <DialogTrigger asChild>
-        <Button className='mt-4 bg-primary text-white rounded-full px-8 py-2'>
+        <Button
+          onClick={() => handleOpen(!open)}
+          className='mt-4 bg-primary text-white rounded-full px-8 py-2'
+        >
           {t('openButton')}
           <Right />
         </Button>

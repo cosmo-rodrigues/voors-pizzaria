@@ -40,7 +40,7 @@ export const Cart = () => {
               <CartProduct
                 key={index}
                 product={product}
-                onRemove={removeCartProduct}
+                onRemove={() => removeCartProduct(index)}
               />
             ))}
           <div className='py-2 pr-16 flex justify-end items-center'>
@@ -52,11 +52,11 @@ export const Cart = () => {
               Total:
             </div>
             <div className='font-semibold pl-2 text-right'>
-              R$49
+              {cartProducts.reduce((a, b) => a + b.price, 0)}
               <br />
               R$5
               <br />
-              R$54,90
+              {cartProducts.reduce((a, b) => a + b.price, 5)}
             </div>
           </div>
         </div>
