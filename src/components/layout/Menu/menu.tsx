@@ -22,7 +22,7 @@ export const Menu = () => {
   return (
     <>
       {isLoading && (
-        <div className='flex justify-between pt-10'>
+        <div className='grid sm:grid-cols-3 gap-4 mt-6 mb-12'>
           {Array.from([1, 2, 3]).map((card) => (
             <SkeletonComponent key={card} />
           ))}

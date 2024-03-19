@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui';
 import Image from 'next/image';
 import { MenuItemModal } from '../Menu/MenuItemModal/menu-item-modal';
+import { useState } from 'react';
 
 export interface IMenuItem {
   id: string;
@@ -15,6 +16,8 @@ interface MenuItemProps {
   item: IMenuItem;
 }
 export default function MenuItem({ item }: MenuItemProps) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div
       className='
@@ -30,7 +33,7 @@ export default function MenuItem({ item }: MenuItemProps) {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, non
         suscipit dignissimos.
       </p>
-      <MenuItemModal item={item} />
+      <MenuItemModal item={item} open={open} setOpen={setOpen} />
     </div>
   );
 }

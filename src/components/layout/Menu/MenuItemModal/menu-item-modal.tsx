@@ -15,9 +15,11 @@ import { SIZES } from '@/mock/data/sizes';
 
 interface Props {
   item: IMenuItem;
+  open: boolean;
+  setOpen: () => void;
 }
 
-export function MenuItemModal({ item }: Props) {
+export function MenuItemModal({ item, open, setOpen }: Props) {
   const t = useTranslations('MenuItemModal');
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [selectedSize, setSelectedSize] = useState(SIZES[0]);
@@ -41,7 +43,7 @@ export function MenuItemModal({ item }: Props) {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open}>
       <DialogTrigger asChild>
         <Button className='mt-4 bg-primary text-white rounded-full px-8 py-2'>
           {t('openButton')}
@@ -118,7 +120,10 @@ export function MenuItemModal({ item }: Props) {
             <div className=' flex flex-col justify-center items-center w-full'>
               <DialogTrigger asChild>
                 <Button
-                  onClick={() => addToCart(item)}
+                  onClick={() => {
+                    addToCart(item);
+                    setOpen(!open);
+                  }}
                   className='bg-primary text-lg text-white rounded-full px-8 py-2 h-[5vh] w-[90%]'
                 >
                   {t('addButton')}
@@ -127,7 +132,7 @@ export function MenuItemModal({ item }: Props) {
               <DialogTrigger asChild>
                 <Button
                   variant='ghost'
-                  onClick={() => addToCart(item)}
+                  onClick={() => setOpen(!open)}
                   className='bg-slate-400 rounded-full px-8 py-2 h-[5vh] w-[90%] text-lg mt-2'
                 >
                   {t('cancelButton')}

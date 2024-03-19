@@ -26,9 +26,9 @@ export default function LocalSwitcher() {
     const currentPath = pathname.split('/')[2];
 
     startTransition(() => {
-      if (currentPath) return router.replace(`/${nextLocale}/${currentPath}`);
+      if (currentPath) return router.push(`/${nextLocale}/${currentPath}`);
 
-      router.replace(`/${nextLocale}`);
+      router.push(`/${nextLocale}`);
     });
   };
   return (
