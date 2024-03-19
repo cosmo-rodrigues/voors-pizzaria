@@ -18,6 +18,10 @@ interface MenuItemProps {
 export default function MenuItem({ item }: MenuItemProps) {
   const [open, setOpen] = useState(false);
 
+  const handleOpen = (open: boolean) => {
+    setOpen(open)
+  }
+
   return (
     <div
       className='
@@ -33,7 +37,7 @@ export default function MenuItem({ item }: MenuItemProps) {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, non
         suscipit dignissimos.
       </p>
-      <MenuItemModal item={item} open={open} setOpen={setOpen} />
+      <MenuItemModal item={item} open={open} handleOpen={handleOpen} />
     </div>
   );
 }
