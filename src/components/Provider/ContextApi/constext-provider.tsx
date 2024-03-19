@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 const initialContext = {
   cartProducts: [],
   addToCart: () => [],
+  removeCartProduct: () => [],
 };
 
 export const CartContext = createContext(initialContext);
@@ -37,10 +38,10 @@ export function AppProvider({ children }: AppProviderProps) {
     saveCartProductsToLocalStorage([]);
   };
 
-  const removeCartProduct = (indexToRemove: number) => {
+  const removeCartProduct = (name: string) => {
     setCartProducts((prevCartProducts) => {
       const newCartProducts = prevCartProducts.filter(
-        (v, index) => index !== indexToRemove
+        (product) => product.name !== name
       );
       saveCartProductsToLocalStorage(newCartProducts);
       return newCartProducts;

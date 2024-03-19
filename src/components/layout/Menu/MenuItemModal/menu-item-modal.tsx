@@ -10,56 +10,17 @@ import { IMenuItem } from '../../MenuItem/menu-item';
 import { X } from 'lucide-react';
 import { useContext, useState } from 'react';
 import { CartContext } from '@/components/Provider/ContextApi/constext-provider';
+import { ADDITIONAL } from '@/mock/data/additional';
+import { SIZES } from '@/mock/data/sizes';
 
 interface Props {
   item: IMenuItem;
 }
 
-const extraIngredient = [
-  {
-    id: 1,
-    item: 'Bacon',
-    price: 3.0,
-  },
-  {
-    id: 2,
-    item: 'Retirar cebola',
-    price: 0.0,
-    adicionalTime: '5:00',
-  },
-  {
-    id: 3,
-    item: 'Borda recheada',
-    price: 5.0,
-    adicionalTime: '5:00',
-  },
-];
-
-const sizes = [
-  {
-    name: 'Pequena',
-    item: 'P',
-    price: 20.2,
-    timeToFinish: '15:00',
-  },
-  {
-    name: 'Média',
-    item: 'M',
-    price: 30.3,
-    timeToFinish: '20:00',
-  },
-  {
-    name: 'Grande',
-    item: 'G',
-    price: 40.0,
-    timeToFinish: '25:00',
-  },
-];
-
 export function MenuItemModal({ item }: Props) {
   const t = useTranslations('MenuItemModal');
   const [selectedExtras, setSelectedExtras] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(sizes[0]);
+  const [selectedSize, setSelectedSize] = useState(SIZES[0]);
   const { addToCart } = useContext(CartContext);
 
   const handleExtraThingClick = (ev, extraThing) => {
@@ -112,10 +73,10 @@ export function MenuItemModal({ item }: Props) {
               </span>
             )}
             <p className='text-center text-gray-500 text-sm mb-2'></p>
-            {sizes?.length > 0 && (
+            {SIZES?.length > 0 && (
               <div className='py-2'>
                 <h3 className='text-center text-slate-700'>{t('choseSize')}</h3>
-                {sizes.map((size) => (
+                {SIZES.map((size) => (
                   <label
                     key={size.item}
                     className='flex items-center gap-2 p-4 border rounded-md mb-1 text-slate-700'
@@ -131,12 +92,12 @@ export function MenuItemModal({ item }: Props) {
                 ))}
               </div>
             )}
-            {extraIngredient?.length > 0 && (
+            {ADDITIONAL?.length > 0 && (
               <div className='py-2'>
                 <h3 className='text-center text-slate-700'>
                   {t('additional')}
                 </h3>
-                {extraIngredient.map((extraThing) => (
+                {ADDITIONAL.map((extraThing) => (
                   <label
                     key={extraThing.item}
                     className='flex items-center gap-2 p-4 border rounded-md mb-1 text-slate-700'
