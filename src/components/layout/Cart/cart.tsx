@@ -1,16 +1,16 @@
 'use client';
 
-import {
-  CartContext,
-  cartProductPrice,
-} from '@/components/Provider/ContextApi/constext-provider';
-import { useContext, useEffect } from 'react';
+import { CartContext } from '@/components/Provider/ContextApi/constext-provider';
+import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { CartProduct } from '../CartProduct/cart-product';
 import { IMenuItem } from '../MenuItem/menu-item';
+import { Button } from '@/components/ui';
+import Image from 'next/image';
 
 export const Cart = () => {
   const { cartProducts, removeCartProduct } = useContext(CartContext);
+  const [paid, setPaid] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -60,9 +60,28 @@ export const Cart = () => {
             </div>
           </div>
         </div>
-        <div className='bg-gray-100 p-4 rounded-lg'>
-          <h2>Checkout</h2>
-          <button type='submit'>Pagar R$54,90</button>
+        <div className='flex flex-col justify-evenly items-center bg-slate-200 p-4 rounded-lg'>
+          <h2 className='font-extrabold text-2xl text-slate-400'>Checkout</h2>
+          {paid && (
+            <div className='p-12'>
+              <Image
+                alt='confetti'
+                height={100}
+                src='/confetti.png'
+                width={100}
+              />
+              <h4 className='text-3xl font-extrabold text-green-700'>
+                Parabéns!!!
+              </h4>
+            </div>
+          )}
+          <Button
+            onClick={() => setPaid(!paid)}
+            variant='secondary'
+            className='bg-primary'
+          >
+            Pagar +{cartProducts.reduce((a, b: IMenuItem) => a + b.price, 5)}
+          </Button>
         </div>
       </div>
     </section>
