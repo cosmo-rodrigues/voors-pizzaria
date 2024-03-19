@@ -52,11 +52,11 @@ export const Cart = () => {
               Total:
             </div>
             <div className='font-semibold pl-2 text-right'>
-              {cartProducts.reduce((a, b) => a + b.price, 0)}
+              {cartProducts.reduce((a, b: IMenuItem) => a + b.price, 0)}
               <br />
               R$5
               <br />
-              {cartProducts.reduce((a, b) => a + b.price, 5)}
+              {cartProducts.reduce((a, b: IMenuItem) => a + b.price, 5)}
             </div>
           </div>
         </div>
