@@ -13,9 +13,8 @@ export interface IMenuItem {
 
 interface MenuItemProps {
   item: IMenuItem;
-  addItems: (item: IMenuItem) => void;
 }
-export default function MenuItem({ item, addItems }: MenuItemProps) {
+export default function MenuItem({ item }: MenuItemProps) {
   return (
     <div
       className='
@@ -31,7 +30,7 @@ export default function MenuItem({ item, addItems }: MenuItemProps) {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, non
         suscipit dignissimos.
       </p>
-      <MenuItemModal addItems={addItems} item={item} />
+      <MenuItemModal item={item} />
     </div>
   );
 }

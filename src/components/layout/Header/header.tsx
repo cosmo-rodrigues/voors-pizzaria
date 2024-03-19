@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import Link from 'next/link';
@@ -14,15 +15,27 @@ import * as Shad from '@/components/ui';
 import LocalSwitcher from '../LocalSwitcher/local-switcher';
 import Image from 'next/image';
 import { Nav } from '../Navbar/navbar';
+import { IMenuItem } from '../MenuItem/menu-item';
+import { useContext, useEffect, useState } from 'react';
+import { CartContext } from '@/components/Provider/ContextApi/constext-provider';
 
 interface HeaderProps extends ComponentProps {
   locale: string;
 }
 
 export const Header = ({ className, locale }: HeaderProps) => {
+  const [cartItems, setCartemItems] = useState<IMenuItem[]>([]);
   const { theme, setTheme } = useTheme();
   const tHeader = useTranslations('Header');
   const tNav = useTranslations('Nav');
+  const { cartProducts } = useContext(CartContext);
+
+  useEffect(() => {
+    if (typeof global !== 'undefined') {
+      let items = global.localStorage.getItem('cart-items') || [];
+      setCartemItems(items);
+    }
+  }, [cartProducts, global]);
 
   const routes = [
     {
@@ -91,15 +104,22 @@ export const Header = ({ className, locale }: HeaderProps) => {
           />
 
           <div className='flex items-center text-slate-500'>
-            <Shad.Button
-              aria-label='Shopping Cart'
-              className='mr-2'
-              size='icon'
-              variant='ghost'
-            >
-              <ShoppingCart />
-              <span className='sr-only'>{tHeader('shoppingCart')}</span>
-            </Shad.Button>
+            <Link href={`/${locale}/cart`} className='relative'>
+              <Shad.Button
+                aria-label='Shopping Cart'
+                className='mr-2'
+                size='icon'
+                variant='ghost'
+              >
+                <ShoppingCart />
+                {cartProducts?.length > 0 && (
+                  <span className='absolute top-0 right-1 bg-primary text-white text-xs py-1 px-1 rounded-full leading-3'>
+                    {cartProducts?.length}
+                  </span>
+                )}
+                <span className='sr-only'>{tHeader('shoppingCart')}</span>
+              </Shad.Button>
+            </Link>
 
             <Shad.Button
               aria-label='Toggle theme'
@@ -113,7 +133,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
               <span className='sr-only'>{tHeader('toggleTheme')}</span>
             </Shad.Button>
 
-            <LocalSwitcher />
+            {/* <LocalSwitcher /> */}
           </div>
         </div>
       </Container>

@@ -3,23 +3,16 @@
 
 import Right from '@/components/icons/Right';
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { IMenuItem } from '../../MenuItem/menu-item';
 import { X } from 'lucide-react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '@/components/Provider/ContextApi/constext-provider';
 
 interface Props {
   item: IMenuItem;
-  addItems: (pizza: IMenuItem) => void;
 }
 
 const extraIngredient = [
@@ -63,10 +56,11 @@ const sizes = [
   },
 ];
 
-export function MenuItemModal({ addItems, item }: Props) {
+export function MenuItemModal({ item }: Props) {
   const t = useTranslations('MenuItemModal');
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
+  const { addToCart } = useContext(CartContext);
 
   const handleExtraThingClick = (ev, extraThing) => {
     const checked = ev.target.checked;
@@ -163,7 +157,7 @@ export function MenuItemModal({ addItems, item }: Props) {
             <div className=' flex flex-col justify-center items-center w-full'>
               <DialogTrigger asChild>
                 <Button
-                  onClick={() => addItems(item)}
+                  onClick={() => addToCart(item)}
                   className='bg-primary text-lg text-white rounded-full px-8 py-2 h-[5vh] w-[90%]'
                 >
                   {t('addButton')}
@@ -172,7 +166,7 @@ export function MenuItemModal({ addItems, item }: Props) {
               <DialogTrigger asChild>
                 <Button
                   variant='ghost'
-                  onClick={() => addItems(item)}
+                  onClick={() => addToCart(item)}
                   className='bg-slate-400 rounded-full px-8 py-2 h-[5vh] w-[90%] text-lg mt-2'
                 >
                   {t('cancelButton')}

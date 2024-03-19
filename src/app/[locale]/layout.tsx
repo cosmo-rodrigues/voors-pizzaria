@@ -7,6 +7,7 @@ import '../globals.css';
 import { Header } from '@/components/layout';
 import { ThemeProvider } from '@/components/Provider/Theme/theme-provider';
 import { ReactQueryClientProvider } from '@/components/Provider/ReactQuery/react-query-provider';
+import { AppProvider } from '@/components/Provider/ContextApi/constext-provider';
 
 const roboto = Roboto({
   style: 'normal',
@@ -33,19 +34,25 @@ export default function RootLayout({
   const messages = useMessages();
 
   return (
-    <html lang={locale}>
-      <body className={roboto.className}>
-        <ReactQueryClientProvider>
-          <NextIntlClientProvider messages={messages}>
-            <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-              <Toaster />
-              <main className='max-w-4xl mx-auto p-4'>
-                <Header locale={locale} />
-                {children}
-              </main>
-            </ThemeProvider>
-          </NextIntlClientProvider>
-        </ReactQueryClientProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={roboto.className} suppressHydrationWarning>
+        <AppProvider>
+          <ReactQueryClientProvider>
+            <NextIntlClientProvider messages={messages}>
+              <ThemeProvider
+                attribute='class'
+                defaultTheme='system'
+                enableSystem
+              >
+                <Toaster />
+                <main className='max-w-4xl mx-auto p-4'>
+                  <Header locale={locale} />
+                  {children}
+                </main>
+              </ThemeProvider>
+            </NextIntlClientProvider>
+          </ReactQueryClientProvider>
+        </AppProvider>
       </body>
     </html>
   );
