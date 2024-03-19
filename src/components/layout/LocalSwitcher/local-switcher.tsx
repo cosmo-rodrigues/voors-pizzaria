@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ChangeEvent, useTransition } from 'react';
 
 const languages = [
@@ -17,12 +17,17 @@ const languages = [
 
 export default function LocalSwitcher() {
   const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
   const router = useRouter();
   const localActive = useLocale();
 
   const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const nextLocale = e.target.value;
+    const currentPath = pathname.split('/')[2];
+
     startTransition(() => {
+      if (currentPath) return router.replace(`/${nextLocale}/${currentPath}`);
+
       router.replace(`/${nextLocale}`);
     });
   };

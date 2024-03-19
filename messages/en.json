@@ -22,6 +22,15 @@
       "text_03": "with a"
     }
   },
+  "MenuItemModal": {
+    "addButton": "ADD TO CART",
+    "additional": "Any additional?",
+    "cancelButton": "CANCEL",
+    "choseSize": "Chose your size",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem laborum, soluta nemo rerum animi repudiandae, sit itaque voluptatibus unde autem optio.",
+    "openButton": "I WANNA THIS",
+    "warning": "This pizza takes an additional 5 minutes to prepare."
+  },
   "Nav": {
     "routes": {
       "home": {

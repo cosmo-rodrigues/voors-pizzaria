@@ -22,6 +22,15 @@
       "text_03": "com uma"
     }
   },
+  "MenuItemModal": {
+    "addButton": "ADICIONAR AO CARRINHO",
+    "additional": "Adicionais?",
+    "cancelButton": "CANCELAR",
+    "choseSize": "Escolha o tamanho",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem laborum, soluta nemo rerum animi repudiandae, sit itaque voluptatibus unde autem optio.",
+    "openButton": "EU QUERO ESSA",
+    "warning": "Esta pizza tem adicional de 5 minutos tempo no preparo."
+  },
   "Nav": {
     "routes": {
       "home": {

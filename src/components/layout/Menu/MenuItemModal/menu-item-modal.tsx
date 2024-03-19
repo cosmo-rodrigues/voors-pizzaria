@@ -64,7 +64,7 @@ const sizes = [
 ];
 
 export function MenuItemModal({ addItems, item }: Props) {
-  const t = useTranslations('Hero');
+  const t = useTranslations('MenuItemModal');
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
 
@@ -89,7 +89,7 @@ export function MenuItemModal({ addItems, item }: Props) {
     <Dialog>
       <DialogTrigger asChild>
         <Button className='mt-4 bg-primary text-white rounded-full px-8 py-2'>
-          EU QUERO ESSA
+          {t('openButton')}
           <Right />
         </Button>
       </DialogTrigger>
@@ -99,11 +99,11 @@ export function MenuItemModal({ addItems, item }: Props) {
           alt={item.name}
           width={300}
           height={200}
-          className='mx-auto'
+          className='-mt-[20px]'
         />
         <div
           onClick={(ev) => ev.stopPropagation()}
-          className='bg-slate-300 p-2 rounded-lg overflow-y-scroll'
+          className='bg-slate-300 p-2 rounded-lg overflow-y-scroll w-full max-w-[600px] -mt-[20px]'
         >
           <div
             className='p-2 flex flex-col'
@@ -114,20 +114,13 @@ export function MenuItemModal({ addItems, item }: Props) {
             </h2>
             {handleAdditionalTime(item.name) && (
               <span className='py-1 px-3  bg-orange-300 font-semibold self-center rounded-sm mb-2'>
-                Esta pizza tem adicional de 5 minutos tempo no preparo
+                {t('warning')}
               </span>
             )}
-            <p className='text-center text-gray-500 text-sm mb-2'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatem laborum, soluta nemo rerum animi repudiandae, sit
-              itaque voluptatibus unde autem optio. Minus, voluptates.
-              Accusantium rerum perspiciatis, velit aliquid commodi tempore.
-            </p>
+            <p className='text-center text-gray-500 text-sm mb-2'></p>
             {sizes?.length > 0 && (
               <div className='py-2'>
-                <h3 className='text-center text-slate-700'>
-                  Escolha o tamanho
-                </h3>
+                <h3 className='text-center text-slate-700'>{t('choseSize')}</h3>
                 {sizes.map((size) => (
                   <label
                     key={size.item}
@@ -146,7 +139,9 @@ export function MenuItemModal({ addItems, item }: Props) {
             )}
             {extraIngredient?.length > 0 && (
               <div className='py-2'>
-                <h3 className='text-center text-slate-700'>Adicionais?</h3>
+                <h3 className='text-center text-slate-700'>
+                  {t('additional')}
+                </h3>
                 {extraIngredient.map((extraThing) => (
                   <label
                     key={extraThing.item}
@@ -171,7 +166,7 @@ export function MenuItemModal({ addItems, item }: Props) {
                   onClick={() => addItems(item)}
                   className='bg-primary text-lg text-white rounded-full px-8 py-2 h-[5vh] w-[90%]'
                 >
-                  ADICIONAR AO CARRINHO
+                  {t('addButton')}
                 </Button>
               </DialogTrigger>
               <DialogTrigger asChild>
@@ -180,7 +175,7 @@ export function MenuItemModal({ addItems, item }: Props) {
                   onClick={() => addItems(item)}
                   className='bg-slate-400 rounded-full px-8 py-2 h-[5vh] w-[90%] text-lg mt-2'
                 >
-                  CANCELAR
+                  {t('cancelButton')}
                   <X />
                 </Button>
               </DialogTrigger>

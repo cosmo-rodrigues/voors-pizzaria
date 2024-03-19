@@ -13,7 +13,7 @@ import {
 import { useTranslations } from 'next-intl';
 
 export function ArticleENUS() {
-  const t = useTranslations('Nav');
+  const t = useTranslations('Hero');
 
   return (
     <div>
