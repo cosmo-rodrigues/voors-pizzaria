@@ -9,15 +9,13 @@ import toast from 'react-hot-toast';
 
 const initialContext = {
   cartProducts: [],
-  addToCart: () => [],
+  addToCart: (order: IMenuItem) => [],
   removeCartProduct: (index: number) => [],
+  getProductsAmount: (number: number) => number,
+  clearCart: () => null,
 };
 
 export const CartContext = createContext(initialContext);
-
-export function cartProductPrice(...prices: number[]) {
-  return prices.reduce((acc, crr) => acc + crr, 0);
-}
 
 interface AppProviderProps extends ComponentProps {}
 
@@ -38,6 +36,15 @@ export function AppProvider({ children }: AppProviderProps) {
     saveCartProductsToLocalStorage([]);
   };
 
+  const getProductsAmount = (delivery: number) => {
+    const total = cartProducts.reduce(
+      (a, b: IMenuItem) => a + b.price,
+      delivery
+    );
+
+    return Number(total.toFixed(2));
+  };
+
   const removeCartProduct = (produCtIndex: number) => {
     setCartProducts((prevCartProducts) => {
       const newCartProducts = prevCartProducts.filter(
@@ -55,13 +62,8 @@ export function AppProvider({ children }: AppProviderProps) {
     }
   };
 
-  const addToCart = (product: IMenuItem, size = null, extras = []) => {
-    setCartProducts((prevProducts) => {
-      const cartProduct = { ...product, size, extras };
-      const newProducts = [...prevProducts, cartProduct];
-      saveCartProductsToLocalStorage(newProducts);
-      return newProducts;
-    });
+  const addToCart = (product: IMenuItem) => {
+    setCartProducts((prevProducts) => [...prevProducts, product]);
   };
 
   return (
@@ -72,6 +74,7 @@ export function AppProvider({ children }: AppProviderProps) {
         addToCart,
         removeCartProduct,
         clearCart,
+        getProductsAmount,
       }}
     >
       {children}

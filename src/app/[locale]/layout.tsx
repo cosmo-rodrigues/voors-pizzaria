@@ -7,7 +7,7 @@ import '../globals.css';
 import { Header } from '@/components/layout';
 import { ThemeProvider } from '@/components/Provider/Theme/theme-provider';
 import { ReactQueryClientProvider } from '@/components/Provider/ReactQuery/react-query-provider';
-import { AppProvider } from '@/components/Provider/ContextApi/constext-provider';
+import { AppProvider } from '@/components/Provider/ContextApi/context-provider';
 
 const roboto = Roboto({
   style: 'normal',

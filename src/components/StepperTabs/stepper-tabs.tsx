@@ -1,16 +1,16 @@
 // @ts-nocheck
-
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import * as Shad from '@/components/ui';
 import { SIZES } from '@/mock/data/sizes';
 import { ADDITIONAL } from '@/mock/data/additional';
 import { PIZZAS } from '@/mock/data/pizzas';
-import { CartContext } from '../Provider/ContextApi/constext-provider';
+import { CartContext } from '../Provider/ContextApi/context-provider';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { fakeRequest } from '@/helpers/fake-request';
 
 export function StepperTabs() {
   const router = useRouter();
@@ -51,10 +51,6 @@ export function StepperTabs() {
     return sizePrice + additionalAmount + typeAmount;
   };
 
-  const fakeCalling = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-  };
-
   const handleOrder = () => {
     if (!selectedSize.item) {
       return toast.error('Selecione um tamanho');
@@ -71,7 +67,7 @@ export function StepperTabs() {
     addToCart(order);
 
     toast
-      .promise(fakeCalling(), {
+      .promise(fakeRequest(1000), {
         loading: 'Adicionando...',
         success: <b>Piza adicionada com sucesso!</b>,
       })
@@ -99,14 +95,21 @@ export function StepperTabs() {
               Escolha o tamanho da sua fome
             </Shad.CardDescription>
           </Shad.CardHeader>
-          <Shad.CardContent>
+          <Shad.CardContent className='p-0 sm:p-6'>
             <Shad.RadioGroup>
               <div>
                 {SIZES.map((size) => (
-                  <div key={size.item} className='flex items-center space-x-2'>
+                  <div
+                    key={size.item}
+                    className='flex items-center space-x-2 w-full'
+                  >
                     <Shad.Label
                       htmlFor={size.item}
-                      className='flex items-center gap-2 p-2 border rounded-md mb-1 text-slate-700 w-full'
+                      className='
+                        flex items-center
+                        gap-2 border
+                        rounded-md mb-1 
+                        text-slate-700 p-0 py-3 sm:p-2'
                     >
                       <Shad.RadioGroupItem
                         value={size.name}
@@ -114,7 +117,8 @@ export function StepperTabs() {
                         onClick={() => setSelectedSize(size)}
                         checked={selectedSize?.name === size.name}
                       />
-                      {`${size.name} R${size.price} - Preparo: ${size.timeToFinish} 🕑`}
+                      {`${size.name} R${size.price} - Preparo: ${size.timeToFinish}`}
+                      &nbsp;🕑
                     </Shad.Label>
                   </div>
                 ))}

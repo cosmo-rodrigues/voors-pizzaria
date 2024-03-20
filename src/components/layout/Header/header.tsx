@@ -17,7 +17,7 @@ import Image from 'next/image';
 import { Nav } from '../Navbar/navbar';
 import { IMenuItem } from '../MenuItem/menu-item';
 import { useContext, useEffect, useState } from 'react';
-import { CartContext } from '@/components/Provider/ContextApi/constext-provider';
+import { CartContext } from '@/components/Provider/ContextApi/context-provider';
 
 interface HeaderProps extends ComponentProps {
   locale: string;
@@ -63,7 +63,7 @@ export const Header = ({ className, locale }: HeaderProps) => {
               <Shad.SheetTrigger>
                 <Menu className='h6- lg:hidden w-6' />
               </Shad.SheetTrigger>
-              <Shad.SheetContent side='left' className='w-[300px] sm:w-[400px]'>
+              <Shad.SheetContent side='left' className='w-[250px] sm:w-[400px]'>
                 <nav className='flex flex-col gap-4'>
                   {routes.map((route, i) => (
                     <Shad.Button asChild key={i} variant='ghost'>
